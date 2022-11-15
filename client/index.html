@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accueil</title>
+        <script src="dist/index.js"></script>
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="icon" href="img/favicon.png" type="image/png" />
+    </head>
+    <body id="index">
+    <div class="flex center">
+        <div class="sign-in-input-group container header">
+            <form action="" method="post" autocomplete="off">
+                <div id ="title">Une Épopée Grandiose</div>
+                <div>Nom d'utilisateur :</div>
+                <input type="text" name="username" placeholder="Nom d'usager" required>
+                <div>Mot de passe :</div>
+                <input type="password" name="password" placeholder="Mot de passe" required>
+                <div>
+                    <button class="button">Connexion</button>
+                    <button id="sign-up" class="button">Créer un compte</button>
+                </div>
+                <div id="api-message"></div>
+            </form>
+        </div>
+        <!-- Create a canvas element for the game -->
+        <div id="game-canvas"></div>
+    </div>
+    </body>
+</html>

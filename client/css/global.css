@@ -1,0 +1,130 @@
+/*
+ *
+ *
+ * CSS GÉNÉRAL
+ *
+ *
+ */
+* {
+    /* Pour éviter les problèmes de débordement */
+    margin:0;
+    padding:0;
+    /* Style de la police pour l'ensemble du programme */
+    font-family: 'Goudy Old Style', fantasy;
+    /* Smoothing sert à rendre les polices plus lisses */
+    -moz-osx-font-smoothing: grayscale; /* Firefox */
+    -webkit-font-smoothing: antialiased; /* Chrome */
+}
+
+canvas{
+    /* Crisp edge*/
+    image-rendering: crisp-edges;
+}
+
+body {
+    /* Permet de faire en sorte que le contenu ne dépasse pas la
+    taille de la fenêtre */
+    width: 100vw;
+    height: 100vh;
+}
+
+.flex{
+    /** Ajoute la propriété flex*/
+    display: flex;
+}
+
+.center{
+    /* Justifie et aligne les éléments au centre.*/
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    /* Ajoute une marge en haut de la page */
+    margin: 10vh 0 3vh 0;
+}
+
+.row{
+    /* Contenant qui sert à mettre les éléments en ligne */
+    flex-direction: row;
+}
+.column{
+    /* Contenant qui sert à mettre les éléments en colonne */
+    flex-direction: column;
+}
+
+.container{
+    /* Contenant de base qui sert à centrer le contenu
+    et à le mettre dans un cadre*/
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.button {
+    /* Style de base pour les boutons */
+    margin: 10px 10px 10px 10px;
+    padding: 8px 8px 8px 8px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#api-message {
+    /* Message d'erreur */
+    color: red;
+    font-size: 12px;
+}
+
+#title{
+    /* Store le style unique à l'affichage du titre.*/
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 6px;
+
+    background: -webkit-linear-gradient(gold, #000000);
+    -webkit-background-clip: text; /* Chrome */
+    -webkit-text-fill-color: transparent; /* Chrome */
+}
+
+/*
+*
+* INDEX
+*
+*
+*/
+#index{
+    background-image: url(../../background/index.jpg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/*
+ *
+ * Lobby
+ *
+ *
+ */
+#lobby{
+    background-image: url(../../background/lobby.jpg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/*
+*
+* Game
+*
+*
+*/
+#game{
+    /*background-image: url(../../background/game.jpg);
+    background-position: center;
+    background-attachment: fixed;*/
+}
