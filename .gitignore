@@ -2,3 +2,4 @@ node_modules/
 client/dist/*
 !client/dist/.gitkeep
 .idea/*
+.idea/vcs.xml
