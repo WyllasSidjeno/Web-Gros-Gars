@@ -16,9 +16,9 @@
     -webkit-font-smoothing: antialiased; /* Chrome */
 }
 
-canvas{
-    /* Crisp edge*/
-    image-rendering: crisp-edges;
+img{
+    image-rendering: pixelated; // Chrome
+    border: none;
 }
 
 body {
@@ -26,6 +26,8 @@ body {
     taille de la fenêtre */
     width: 100vw;
     height: 100vh;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .flex{
@@ -73,6 +75,8 @@ body {
     border-radius: 5px;
 
     cursor: pointer;
+
+    display: inline;
 }
 
 #api-message {
@@ -101,8 +105,6 @@ body {
 */
 #index{
     background-image: url(../../background/index.jpg);
-    background-position: center;
-    background-attachment: fixed;
 }
 
 /*
@@ -113,18 +115,4 @@ body {
  */
 #lobby{
     background-image: url(../../background/lobby.jpg);
-    background-position: center;
-    background-attachment: fixed;
-}
-
-/*
-*
-* Game
-*
-*
-*/
-#game{
-    /*background-image: url(../../background/game.jpg);
-    background-position: center;
-    background-attachment: fixed;*/
 }
