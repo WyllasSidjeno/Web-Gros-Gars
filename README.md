@@ -325,32 +325,33 @@ window.addEventListener("load", () => {
 <p></p>
 
 Additionellement, on y verra les fonctions suivantes :
-- **changeBackground** -> *Une fonction qui permet de changer le background, dans l'optique d'en avoir une différente par type de boss.*
-- **spawnMainPlayer** -> *Une fonction qui fait spawn le personnage principal*
-- **spawnBoss** -> *Une fonction qui fait spawn le boss*
-- **spawnOtherPlayer** -> *Une fonction qui permet de faire spawn un autre joueur en prenant **player** comme paramètre elle affiche également son Sprite, dépendant de sa classe et son message de bienvenue s'il en a un.*
-- **filterPlayerAction** -> *Filtre l'action du joueur dépendant de son type d'attaque entre normal, special1 et special2 en prenant en paramètre l'**id** du joueur qui attaque ainsi que son **type d'attaque***
-- **disconnectPlayer** -> *Déconnecte un joueur et le retire de la spriteList si jamais il n'est plus présent dans la partie. Cette fonction doit prendre en paramètre **Player***
-- **initalizeLocation** -> *Initialise la location d'un sprite et le fait marcher jusqu'à sa position d'origine dans son fichier d'objet dépendant de son ID. Elle prend en paramètre **sprite***
-- **tick** -> *Représente le tick de base du jeu:*
-    - *Il s'agit d'un forEach qui fait tick tout les sprites et les supprime lorsqu'ils ne sont plus tickable.*
-        - *Elle ira donc retirer le sprite ainsi que sa barre de mana et de vie et la retira du SpriteList.*
-    - *Elle fera par la suite ticker le boss.*
-    - *Finira par un requestAnimationFrame sur tick.*
-- **attackCallback** -> *Lorsque l'utilisateur attaque, le serveur renvoit cette fonction. Elle sert donc à afficher l'animation reliées à ce numéro d'attaque. Prend en paramètre **skill***
-- **gameUpdate** -> *Fonction appellée à chaque 2 secondes environ, et ce, automatique par l'API.*
-    - *Elle débute par mapper la liste des joueurs et s'assure qu'ils sont tous encore connecté. Sinon, il déconecte le joueur non connecté.*
-    - *Pour tout les joueurs connectés :*
-        - *En utilisant la même map, on s'assurera que tout les joueurs connecté sont présent dans le jeu. Sinon, on les connecte et affiche leur sprite.*
-        - *On s'assure qu'ils n'ont pas attaqué, sinon, on fait l'attaque grâce a filter player action.*
-    - *On update la bar de vie et de mana du joueur principal.*
-    - *On update la bar du boss.*
-    - *On update la bar des autres personnages joueurs.*
-    - *On s'assure que le boss n'ai pas attaqué, sinon, on l'affiche.*
-- **gameOverCallback** -> *Fonction appelée automatique par l'API lors de la fin de la partie, gagnante ou non. Cette fonction crééra un div de gameOver et appellera win ou lost dépendant de son état. Par la suite, elle appellera gameOver*
-    - **win** -> *Affiche un message de victoire sur fond vert*
-    - **lost** -> *Affiche un message de perte sur fond rouge*
-    - **gameOver** -> *Ajoute un bouton et lien html vers le lobby pour choisir une autre partie.*
+- **changeBackground** -> Une fonction qui permet de changer le background, dans l'optique d'en avoir une différente par type de boss.
+
+- **spawnMainPlayer** -> Une fonction qui fait spawn le personnage principal
+- **spawnBoss** -> Une fonction qui fait spawn le boss
+- **spawnOtherPlayer** -> Une fonction qui permet de faire spawn un autre joueur en prenant **player** comme paramètre elle affiche également son Sprite, dépendant de sa classe et son message de bienvenue s'il en a un.
+- **filterPlayerAction** -> Filtre l'action du joueur dépendant de son type d'attaque entre normal, special1 et special2 en prenant en paramètre l'**id** du joueur qui attaque ainsi que son **type d'attaque**
+- **disconnectPlayer** -> Déconnecte un joueur et le retire de la spriteList si jamais il n'est plus présent dans la partie. Cette fonction doit prendre en paramètre **Player**
+- **initalizeLocation** -> Initialise la location d'un sprite et le fait marcher jusqu'à sa position d'origine dans son fichier d'objet dépendant de son ID. Elle prend en paramètre **sprite**
+- **tick** -> Représente le tick de base du jeu:
+    - Il s'agit d'un forEach qui fait tick tout les sprites et les supprime lorsqu'ils ne sont plus tickable.
+        - Elle ira donc retirer le sprite ainsi que sa barre de mana et de vie et la retira du SpriteList.
+    - Elle fera par la suite ticker le boss.
+    - Finira par un requestAnimationFrame sur tick.
+- **attackCallback** -> Lorsque l'utilisateur attaque, le serveur renvoit cette fonction. Elle sert donc à afficher l'animation reliées à ce numéro d'attaque. Prend en paramètre **skill**
+- **gameUpdate** -> Fonction appellée à chaque 2 secondes environ, et ce, automatique par l'API.
+    - Elle débute par mapper la liste des joueurs et s'assure qu'ils sont tous encore connecté. Sinon, il déconecte le joueur non connecté.
+    - Pour tout les joueurs connectés :
+        - En utilisant la même map, on s'assurera que tout les joueurs connecté sont présent dans le jeu. Sinon, on les connecte et affiche leur sprite.
+        - On s'assure qu'ils n'ont pas attaqué, sinon, on fait l'attaque grâce a filter player action.
+    - On update la bar de vie et de mana du joueur principal.
+    - On update la bar du boss.
+    - On update la bar des autres personnages joueurs.
+    - On s'assure que le boss n'ai pas attaqué, sinon, on l'affiche.
+- **gameOverCallback** -> Fonction appelée automatique par l'API lors de la fin de la partie, gagnante ou non. Cette fonction crééra un div de gameOver et appellera win ou lost dépendant de son état. Par la suite, elle appellera gameOver
+    - **win** -> Affiche un message de victoire sur fond vert
+    - **lost** -> Affiche un message de perte sur fond rouge
+    - **gameOver** -> Ajoute un bouton et lien html vers le lobby pour choisir une autre partie.
 
  <details><summary>page-game.js</summary>
 
@@ -635,15 +636,27 @@ On y instaure en variable local d'objet :
 - S'il est en vie ou non (toujours oui au début)
 
 On y voit aussi les méthodes suivantes :
-- **tick** -> *La fonction tick du personnage qui fera passer à la prochaine frame de son animation*
-- **changeState** -> *Une fonction setter qui permet de changer le state du personnage. Prend en paramètre le **State** pour lequel le changer. En string.*
-- **setPosition** -> *Positionne, maintenant, le personnage à une position x,y sans animation. Prend en paramètre **X** et **Y**, deux nombres.*
-- **(async) move** -> *Change l'état pour "run" et s'assure que l'animation est du bon côté. Par la suite, grâce à une boucle et un setTimeout relié à un Système de promesse, fait déplacer lentement le personnage vers sa position **to** à partir de **from**. Une fois arrivée, redevient idle. Prend en paramètre deux position sur les X : **to** et **from**. Ne se déplace pas en Y.*
-- **(async) moveToAndAttack** -> *Appelle la fonction move, par la suite (then), exécute l'attaque, par la suite (then), retourn à la position de départ. Prend en paramètre **from**, **to**, et **attackid**. attackID étant le nom de l'attaque.* 
-- **(async) moveBack** -> *Fonction utilisé pour effectuer un mouvement de retour. Tourne l'animation de côté et fait un mouvement avec promesse, identique à move, mais avec une boucle for négative. Prend en paramètre **from** et **to**, deux positions sur les X.*
-- **(async) simpleAttack** -> *Fonction utilisé pour afficher une attaque d'un joueur dépendant du type d'attaque et des animation disponibles. Elle ira calculer le temps nécessaire à l'animation et fera un settimeout nécessaire afin de permettre à l'animation de s'éxécuter avant de terminer son appel. Prend en paramètre l'**attackId***
-- **updateBars** -> *Met à jour les valeurs (current/max) de vie et de mana dans la mana bar et la healthbar. Prend en paramètre **health** et **mana** qui contiennent toute deux la vleur courrante et maximal de leur types respectifs.*
-- **distanceBetweenX** -> *Utilisé uniquement lors des fonctions d'attaques des personnages. Elle permet de calculer, pour les attaques corps à corps, la distance entre l'ennemi et le joueur avec la marge vide su Sprite du boss. Prend en paramètre l'**objet du boss***
+- **tick** -> La fonction tick du personnage qui fera passer à la prochaine frame de son animation
+
+- **changeState** -> Une fonction setter qui permet de changer le state du personnage. Prend en paramètre le **State** pour lequel changer l'état actuel. En string.
+
+- **setPosition** -> Positionne, maintenant, le personnage à une position x,y sans animation. Prend en paramètre **X** et **Y**, deux nombres.
+
+- **(async) move** -> Change l'état pour "run" et s'assure que l'animation est du bon côté. Par la suite, grâce à une boucle et un setTimeout relié à un Système de promesse, fait déplacer lentement le personnage vers sa position **to** à partir de **from**. Une fois arrivée, redevient idle. Prend en paramètre deux position sur les X : **to** et **from**. Ne se déplace pas en Y.
+
+- **(async) moveToAndAttack** -> Appelle la fonction move, par la suite (then), exécute l'attaque, par la suite (then), retourn à la position de départ. Prend en paramètre **from**, **to**, et **attackid**. attackID étant le nom de l'attaque. 
+
+- **(async) moveBack** -> Fonction utilisé pour effectuer un mouvement de retour. Tourne l'animation de côté et fait un mouvement avec promesse, identique à move, mais avec une boucle for négative. Prend en paramètre **from** et **to**, deux positions sur les X.
+
+- **(async) simpleAttack** -> Fonction utilisé pour afficher une attaque d'un joueur dépendant du type d'attaque et des animation disponibles. Prend en paramètre l'**attackId**
+    - Change le state pour celui de l'attackID.
+    - Calcule le temps nécessaire a l'attaque.
+    - Permet, grâce à un set timeout et une promesse, à l'animation de faire toute son animation avant de se terminer.
+    - Retourne le state à idle.
+
+- **updateBars** -> Met à jour les valeurs (current/max) de vie et de mana dans la mana bar et la healthbar. Prend en paramètre **health** et **mana** qui contiennent toute deux la valeur courante et maximale de leur types respectifs.
+
+- **distanceBetweenX** -> Utilisé uniquement lors des fonctions d'attaques des personnages. Elle permet de calculer, pour les attaques corps à corps, la distance entre l'ennemi et le joueur avec la marge vide su Sprite du boss. Prend en paramètre l'**objet du boss**
 
  <details><summary>Character.js</summary>
 
@@ -815,5 +828,114 @@ export default class Character {
 <p></p>
 
 ---
-## Les personnages.
-### Healer.js, Warrior.js, Wizard.js, Executioner.js
+## **Les personnages.**
+### ***Healer.js, Warrior.js, Wizard.js, Executioner.js***
+L'exemple qui suit prendra comme objet "healer", car ils sont plus ou moins tous identique, à l'exception de la valeur de certains attributs.
+
+Les objets de personnages sont toutes des sous-classes de Character.js. Elle en hérite ses attributs et ses méthodes.
+#### **Attributs**
+- Créé la position, unique à chaque classe, qui contient :
+    - Un valeur x, reliée à la classe.
+    - Une valeur y, reliée à un calcul basée sur la classe et l'index du joueur.
+
+- Créé un dictionnaire des settings de l'animation. Elle sera par la suite envoyé dans le constructeur de Character pour devenir les animations. Contient :
+    - Le lien vers l'image dans le système.
+    - Le nombre de colonne dans l'image.
+    - Le nombre de ligne dans l'image.
+
+
+Elle envoira en paramètre au contructeur de Character.js :
+- Le nom, le setting dictionary, le scale (créé sur place), et la position
+
+#### **Méthodes**
+Il y a 3 méthodes dans chaque fichier de personnage : Les actions 1, 2 et 3. Il s'agit de fonctions **asynchrone** qui filtrent les attaques en jeu.
+- Elles prennent en paramètre le personnage qui se fait attaquer.
+- Elles appelles moveToAndAttack, en lui envoyant :
+    - Sa position
+    - L'addition de :
+        - La distance entre lui et le boss.
+        - Sa position 
+        - La marge personnel du boss (unique au boss, permet de prendre en considération l'espace vide de la spritesheet.)
+
+## **TiledImage**
+Ce fichier appartient au professeur. Il est responsable de la création de la gestion des spritesheet, à l'extérieur de la gestion de l'état et quelques autres détails. Characters agit comme une sorte de filtre pour prendre et modifier TiledImage pour mieux convenir à mes besoins (Du aux spritesheet différentes et besoins différents que l'utilisation habituelle de TiledImage).
+
+ <details><summary>Healer.js</summary>
+
+```javascript
+import Character from "./Template/Character";
+
+export default class Healer extends Character {
+    constructor(name = "heal", index) {
+        let ingamePosition = {x: 25, y: 25};
+        if (index >= 1) {
+            ingamePosition.y = ingamePosition.y + (index * 7);
+        }
+
+        let path = "../../sprite/healer/"
+        // Dictionnaire contenant les settings de l'animation.
+        let animationsSettingDictionary = {
+            "death": {
+                "image": path + "death.png",
+                "column": 11,
+                "row": 1,
+            },
+            "idle": {
+                "image": path + "idle.png",
+                "column": 6,
+                "row": 1,
+            },
+            "run": {
+                "image": path + "run.png",
+                "column": 8,
+                "row": 1,
+            },
+            "attack1": {
+                "image": path + "Attack1.png",
+                "column": 12,
+                "row": 1,
+            },
+            "attack2": {
+                "image": path + "Attack2.png",
+                "column": 10,
+                "row": 1,
+            },
+            "attack3": {
+                "image": path + "Attack3.png",
+                "column": 9,
+                "row": 1,
+            },
+            "hit:": {
+                "image": path + "hit.png",
+                "column": 4,
+            }
+        }
+        super(name, animationsSettingDictionary, 0.5, ingamePosition);
+    }
+
+    distanceBetweenX(boss) {
+        let x1 = boss.position.x;
+        let x2 = this.position.x;
+        return Math.abs(x1 - x2)
+    }
+
+    async action1(boss) {
+        await this.moveToAndAttack(this.position.x,
+            this.distanceBetweenX(boss) + this.position.x
+            + boss.personalMargin,
+            "attack2");
+    }
+
+    async action2(boss) {
+        await this.moveToAndAttack(this.position.x,
+            this.distanceBetweenX(boss) + this.position.x
+            + boss.personalMargin,
+            "attack1");
+    }
+
+    async action3(boss) {
+        await this.action1(boss);
+    }
+}
+```
+</details>
