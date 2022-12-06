@@ -12,14 +12,15 @@
     <div class = "flex center column">
         <div class="header">
             <div class="container"><h1>Bienvenue, Héro. Faites votre choix ...</h1>
-                <p>Une histoire vous attends.</p></div>
+                <p><i>Une histoire vous attends.</i></p></div>
         </div>
-        <div class = "container">
-            <h1 id="hero"></h1>
+        <div class = "flex column container">
+            <h1 id="hero" class = "name"></h1>
+            <h3 id="hero-points"></h3>
+            <div class = "flex center row" id="game-list"></div>
             <div id="join-error"></div>
-            <div id="game-list"></div>
         </div>
-        <a id="signout" href="javascript:void(0)">Déconnexion</a>
+        <a id="signout" class="button container" href="javascript:void(0)">Déconnexion</a>
     </div>
     </body>
 </html>

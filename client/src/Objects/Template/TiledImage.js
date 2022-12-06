@@ -1,3 +1,18 @@
+/**
+ * Classe pour les animations grâce au Spritesheet.
+ * Je n'en suis pas l'auteur.
+ * @class TiledImage - The class for the animations.
+ * @param {string} image - The path of the image.
+ * @param {number} column - The number of columns in the image.
+ * @param {number} row - The number of rows in the image.
+ * @param {number} refreshRate - The refresh rate of the image.
+ * @param {boolean} horizontal - If the animation be horizontal or not.
+ * @param {number} scale - The scale of the image.
+ * @param {object} node - The node of the character.
+ *
+ * @author Frederic Therriault.
+ */
+
 export default class TiledImage {
 	constructor (imagePath, columns, rows, refreshInterval, horizontal, scale, nodeOrId) {
 		if (nodeOrId != null) {

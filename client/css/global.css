@@ -14,6 +14,8 @@
     /* Smoothing sert à rendre les polices plus lisses */
     -moz-osx-font-smoothing: grayscale; /* Firefox */
     -webkit-font-smoothing: antialiased; /* Chrome */
+    /* Non scrollable */
+    overflow: hidden;
 }
 
 img{
@@ -24,10 +26,20 @@ img{
 body {
     /* Permet de faire en sorte que le contenu ne dépasse pas la
     taille de la fenêtre */
-    width: 100vw;
-    height: 100vh;
-    background-position: center;
+    width: 100vw; /* 100% de la largeur de la fenêtre */
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+    background-position: center center;
     background-attachment: fixed;
+    min-height: 100vh;
+    min-width: 100vw;
+
+}
+
+.icon{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
 }
 
 .flex{
@@ -37,7 +49,7 @@ body {
 
 .center{
     /* Justifie et aligne les éléments au centre.*/
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -55,15 +67,27 @@ body {
     flex-direction: column;
 }
 
+.full {
+    /* Permet de prendre toute la place disponible */
+    width: 100%;
+}
+
+.row-reverse{
+    /* Inverse l'ordre des éléments */
+    flex-direction: row-reverse;
+}
+
 .container{
     /* Contenant de base qui sert à centrer le contenu
     et à le mettre dans un cadre*/
     width: fit-content;
     height: fit-content;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(251,251,250,0.6);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     text-align: center;
+    padding: 10px;
+    border-style: solid none solid none;
 }
 
 .button {
@@ -104,7 +128,7 @@ body {
 *
 */
 #index{
-    background-image: url(../../background/index.jpg);
+    background-image: url(../../background/index.gif);
 }
 
 /*
@@ -114,5 +138,147 @@ body {
  *
  */
 #lobby{
-    background-image: url(../../background/lobby.jpg);
+    background-image: url(../../background/lobby.gif);
+    background-size: cover;
+}
+
+#game-list{
+    max-width: 80vw;
+    flex-wrap: wrap;
+    margin-top: 2vh;
+}
+
+
+.game{
+    /* Game icon in the lobby selection screen */
+    width: 11%;
+    height: 20%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20%;
+    /* Grey*/
+    background-color: rgba(255,255,255,0.65);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+}
+
+.game-name{
+    /* Style du nom du personnage */
+    font-size: 15px;
+    text-align: center;
+    margin: 3px;
+
+    background: -webkit-linear-gradient(gold, #000000);
+    -webkit-background-clip: text; /* Chrome */
+    -webkit-text-fill-color: transparent; /* Chrome */
+}
+
+/*
+ *
+ * Game
+ *
+ *
+ */
+
+#characters{
+    /* Make it dissapear */
+    display: flex;
+}
+
+#attack-1, #attack-2, #attack-3{
+    /* Style des boutons d'attaque MMO LIKE */
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid black;
+    border-radius: 40%;
+    background: -webkit-linear-gradient(goldenrod, brown);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#attack{
+    /*Div positionné en bas de page de la page de jeu*/
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+}
+
+#bars{
+    margin-top: 1%;
+}
+
+#game{
+    background-position: center center;
+    background-attachment: fixed;
+
+}
+
+.bar{
+    margin-top: 5%;
+}
+
+.health{
+    accent-color: green;
+}
+
+.mana{
+    accent-color: blue;
+}
+
+.gameOver{
+    font-size: 45px;
+    font-weight: bold;
+    text-shadow: black 0 0 5px;
+}
+
+.win{
+    /* Style de la div qui s'affiche quand on gagne */
+    color: green;
+}
+
+.lost{
+    /* Style de la div qui s'affiche quand on perd */
+    color: red;
+}
+
+.name{
+    /* Style du nom du personnage */
+    font-size: 30px;
+    text-align: center;
+    margin: 3px;
+
+    background: -webkit-linear-gradient(gold, #000000);
+    -webkit-background-clip: text; /* Chrome */
+    -webkit-text-fill-color: transparent; /* Chrome */
+}
+
+
+.bar-container{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    /*Yellow Paper like background color*/
+    background-color: rgba(251,251,240,0.8);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#message{
+    /* Style du message qui s'affiche en haut de la page de jeu */
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 1px;
+
+    background: -webkit-linear-gradient(gold, #000000);
+    -webkit-background-clip: text; /* Chrome */
+    -webkit-text-fill-color: transparent; /* Chrome */
 }

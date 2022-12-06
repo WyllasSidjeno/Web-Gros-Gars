@@ -1,6 +1,12 @@
 import {gameListLoop, joinSiriusGame, signout, registerLobbyCallbacks} from './sirius-api';
 
+import {createApp} from "vue";
+import Lobby from "./Lobby.vue";
+let root
+const app = createApp(Lobby);
+
 window.addEventListener("load", () => {
+    root = app.mount("#game-list");
     registerLobbyCallbacks(listUpdate, playerInfo);
     gameListLoop();
     document.querySelector("#signout").onclick = signout;
@@ -14,15 +20,8 @@ window.addEventListener("load", () => {
  * @param {*} list de parties
  */
 const listUpdate = list => {
-    let gameListContainer = document.querySelector("#game-list");
-    gameListContainer.innerHTML = "";
-
-    list.forEach(game => {
-        let gameNode = document.createElement("div");
-        gameNode.onclick = () => joinSiriusGame(game.id, err => document.querySelector("#join-error").innerHTML = err)
-        gameNode.innerHTML = game.name + "(lvl : " + game.level + ") Joueurs : " + game.nb + "/" + game.max_users;
-        gameListContainer.append(gameNode);
-    });
+    root.refreshGames(list);
+    console.log(list);
 }
 
 /**
@@ -30,6 +29,7 @@ const listUpdate = list => {
  * @param {*} data du joueur (sa classe, son nom, son niveau, etc)
  */
 const playerInfo = data => {
-    document.querySelector("#hero").innerHTML = data.username + "(lvl : " + data.level + ", points à dépenser : " + (parseInt(data.unspent_points) + parseInt(data.unspent_skills)) + ")";
-    console.log(data);
+    document.querySelector("#hero").innerHTML = data.username;
+    document.querySelector("#hero-points").innerHTML = "( "+ data.type + " de niveau "
+    + data.level + ", points à dépenser : " + (parseInt(data.unspent_points) + parseInt(data.unspent_skills)) + " )";
 }
