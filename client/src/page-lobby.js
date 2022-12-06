@@ -1,4 +1,4 @@
-import {gameListLoop, joinSiriusGame, signout, registerLobbyCallbacks} from './sirius-api';
+import {gameListLoop, signout, registerLobbyCallbacks} from './sirius-api';
 
 import {createApp} from "vue";
 import Lobby from "./Lobby.vue";
@@ -14,7 +14,6 @@ window.addEventListener("load", () => {
 
 /**
  * Liste des parties du jeu. Cette fonction est appelée automatiquement à chaque 4 secondes environ.
- * Vous devrez modifier cette fonction afin d'utiliser Vue au lieu de manipuler le DOM directement.
  *
  * Chaque partie contient plusieurs informations (ex : level, name, id, etc)
  * @param {*} list de parties
